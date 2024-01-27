@@ -5,7 +5,6 @@ const { Frame, Circle, Button, Label, Rectangle, GlowEffect, Pic, Ticker } =
 
 let lightOn = false;
 let electron;
-let electronTicker;
 let lightState = 0;
 
 new Frame(
@@ -55,7 +54,7 @@ function ready() {
   
   electron = new Circle(10, "cyan").pos(315, 632);
   const cirImage = new Pic("assets/cir.png").center().sca(1.6).pos(70, 120);
-  const dropSquare = new Rectangle(80, 200, "#d1d5e6","red")
+  const dropSquare = new Rectangle(80, 200, "#d1d5e6","black")
     .center()
     .pos(540, 350);
   // Switch
@@ -100,72 +99,44 @@ function ready() {
 
   //metal selectors
 
+  const copperButt = new Pic("assets/copperTexture.png")
+    .center()
+    .pos(540, 350)
+    .drag();
   const copperLabel = new Label({
     text: "তামা",
     size: 20,
     bold: true,
-    color: white,
+    color: black,
     vertical: true,
-  });
-  const copperButt = new Button({
-    label: copperLabel,
-    width: 80,
-    height: 200,
-    backgroundColor: "transparent",
-    rollBackgroundColor: "transparent",
-    rollColor: "black",
-    borderWidth: 8,
-    borderColor: "white",
-    gradient: 0.3,
-    corner: 0,
-  })
-    .center()
-    .pos(540, 350)
-    .drag();
+  }).center(copperButt).mov(40,230);
+  
 
-  const siliconLabel = new Label({
-    text: "সিলিকন",
-    size: 18,
-    flip: 270,
-    bold: true,
-  });
-  const siliconButt = new Button({
-    label: siliconLabel,
-    width: 80,
-    height: 200,
-    backgroundColor: "transparent",
-    rollBackgroundColor: "transparent",
-    rollColor: gray,
-    borderWidth: 8,
-    borderColor: "white",
-    gradient: 0.3,
-    corner: 0,
-  })
+  const siliconButt = new Pic("assets/siliconTexture.png")
     .center()
     .pos(800, 270)
     .drag();
 
-  const woodLabel = new Label({
-    text: "কাঠ",
-    size: 20,
-    bold: true,
-    color: white,
-  });
-  const woodButt = new Button({
-    label: woodLabel,
-    width: 80,
-    height: 200,
-    backgroundColor: "transparent",
-    rollBackgroundColor: "transparent",
-    rollColor: black,
-    borderWidth: 8,
-    borderColor: "white",
-    gradient: 0.3,
-    corner: 0,
-  })
+    const siliconLabel = new Label({
+      text: "সিলিকন",
+      size: 20,
+      bold: true,
+      color: black,
+    }).center(siliconButt).mov(40,230);
+
+ 
+  const woodButt = new Pic("assets/woodTexture.png")
     .center()
     .pos(900, 270)
     .drag();
+
+    const woodLabel = new Label({
+      text: "কাঠ",
+      size: 20,
+      bold: true,
+      color: black,
+    }).
+    center(woodButt).mov(40,230);
 
   // Event listener for the button click
   function toggleLight(state) {
