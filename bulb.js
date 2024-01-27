@@ -12,7 +12,7 @@ new Frame(
   FIT,
   1024,
   768,
-  "#3b3b3b",
+  "#d1d5e6",
   "#333",
   ready,
   "assets/",
@@ -52,9 +52,10 @@ function ready() {
     bold: true,
     color: "white",
   });
+  
   electron = new Circle(10, "cyan").pos(315, 632);
   const cirImage = new Pic("assets/cir.png").center().sca(1.6).pos(70, 120);
-  const dropSquare = new Rectangle(80, 200, "transparent")
+  const dropSquare = new Rectangle(80, 200, "#d1d5e6","red")
     .center()
     .pos(540, 350);
   // Switch
@@ -172,7 +173,7 @@ function ready() {
     lightState = lightOn ? 1 : 0;
     if (lightOn) {
       light.color = "yellow";
-      light.effect(new GlowEffect({ color: "yellow", blurX: 70, blurY: 70 }));
+      light.effect(new GlowEffect({ color: "yellow", blurX: 130, blurY: 130 }));
 
       electron.animate({
         props: { path },
@@ -199,10 +200,29 @@ function ready() {
     if (toggle) {
       if (copperButt.hitTestRect(dropSquare)) {
         light.color = "yellow";
-        light.effect(new GlowEffect({ color: "yellow", blurX: 70, blurY: 70 }));
-        siliconButt.center().pos(800, 270);
-        woodButt.center().pos(900, 270);
-        copperButt.center().pos(540, 350);
+        light.effect(new GlowEffect({ color: "yellow", blurX: 130, blurY: 130 }));
+  
+       
+        copperButt.animate({
+          target: copperButt,
+          props: { x: 540, y: 350 },
+          time: 0.5, 
+          ease: "quadIn", 
+        });
+  
+        woodButt.animate({
+          target: woodButt,
+          props: { x: 900, y: 270 },
+          time: 0.5,
+          ease: "quadIn",
+        });
+  
+        siliconButt.animate({
+          target: siliconButt,
+          props: { x: 800, y: 270 },
+          time: 0.5,
+          ease: "quadIn",
+        });
       } else {
         light.color = "transparent";
         light.noEffect();
@@ -214,25 +234,58 @@ function ready() {
     if (toggle) {
       if (siliconButt.hitTestRect(dropSquare)) {
         light.color = "yellow";
-        light.effect(new GlowEffect({ color: "yellow", blurX: 40, blurY: 40 }));
-        copperButt.center().pos(800, 270);
-        woodButt.center().pos(900, 270);
-        siliconButt.center().pos(540, 350);
+        light.effect(new GlowEffect({ color: "lime", blurX: 30, blurY: 30 }));
+  
+       
+        copperButt.animate({
+          props: { x: 800, y: 270 },
+          time: 0.5, 
+          ease: "quadIn",
+        });
+  
+        woodButt.animate({
+          props: { x: 900, y: 270 },
+          time: 0.5,
+          ease: "quadIn",
+        });
+  
+        siliconButt.animate({
+          props: { x: 540, y: 350 },
+          time: 0.5,
+          ease: "quadIn",
+        });
       } else {
         light.color = "transparent";
         light.noEffect();
       }
     }
   });
+  
 
   woodButt.on("pressmove", function () {
     if (toggle) {
       if (woodButt.hitTestRect(dropSquare)) {
         light.color = "transparent";
         light.effect(new GlowEffect({ color: "cyan", blurX: 0, blurY: 0 }));
-        copperButt.center().pos(900, 270);
-        siliconButt.center().pos(800, 270);
-        woodButt.center().pos(540, 350);
+  
+       
+        copperButt.animate({
+          props: { x: 900, y: 270 },
+          time: 0.5, 
+          ease: "quadIn",
+        });
+  
+        siliconButt.animate({
+          props: { x: 800, y: 270 },
+          time: 0.5,
+          ease: "quadIn",
+        });
+  
+        woodButt.animate({
+          props: { x: 540, y: 350 },
+          time: 0.5,
+          ease: "quadIn",
+        });
       } else {
         light.color = "transparent";
         light.noEffect();
