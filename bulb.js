@@ -1,11 +1,12 @@
 import zim from "https://zimjs.org/cdn/016/zim";
 
-const { Frame, Circle, Button, Label, Rectangle, GlowEffect, Pic,Ticker } = zim;
+const { Frame, Circle, Button, Label, Rectangle, GlowEffect, Pic, Ticker } =
+  zim;
 
-let lightOn = false; 
+let lightOn = false;
 let electron;
-let electronTicker; 
-let lightState = 0; 
+let electronTicker;
+let lightState = 0;
 
 new Frame(
   FIT,
@@ -20,22 +21,23 @@ new Frame(
 
 function ready() {
   // const wire = new Rectangle(500, 400, "transparent", "#B87333", 4).center().pos(80, 265);
-  // const path = new Blob(clear,{points:[[-250,-200,0,0,0,0,0,0,"none"],[250,-200,0,0,0,0,0,0,"none"],[250,200,0,0,0,0,0,0,"none"],[-250,200,0,0,0,0,0,0,"none"]]}).centerReg(); 
- 
+  // const path = new Blob(clear,{points:[[-250,-200,0,0,0,0,0,0,"none"],[250,-200,0,0,0,0,0,0,"none"],[250,200,0,0,0,0,0,0,"none"],[-250,200,0,0,0,0,0,0,"none"]]}).centerReg();
 
-
-  const path = new Blob (
-    {color:"transparent",
-    borderColor:"transparent",
-    borderWidth:3, 
-    showControls:false,
-    points: new Rectangle(500, 400, "#B87333", 4)}).center().pos(80, 265); 
+  const path = new Blob({
+    color: "transparent",
+    borderColor: "transparent",
+    borderWidth: 3,
+    showControls: false,
+    points: new Rectangle(500, 400, "#B87333", 4),
+  })
+    .center()
+    .pos(80, 265);
 
   // electron = new Circle(10, "red").pos(445, 655);
- 
+
   const light = new Circle(45, "transparent").center().pos(277, 120); // Increased light size
   const glowCircle = new Circle(30, "yellow").center().pos(455, 615);
- 
+
   // Add a square with a transparent inner side and a black border
 
   const label = new Label({
@@ -47,7 +49,7 @@ function ready() {
   });
 
   const cirImage = new Pic("assets/cir.png").center().sca(1.6).pos(70, 120);
-  const texturePlate = new Rectangle(80,200,"transparent").center().pos(540,350);
+  const dropSquare = new Rectangle(80, 200).center().pos(540, 350);
   // Switch
   const switchButton = new Button({
     label: label,
@@ -60,7 +62,7 @@ function ready() {
     gradient: 0.3,
     corner: 30,
   });
- 
+
   // Switch alpha control
   // Init opacity
   switchButton.alpha = 0.01;
@@ -70,13 +72,16 @@ function ready() {
     if (toggle) {
       switchButton.gradient = 0.01;
       switchButton.alpha = 0.01;
-      glowCircle.effect(new GlowEffect({ color: "yellow", blurX: 80, blurY: 80 }));
+      glowCircle.effect(
+        new GlowEffect({ color: "yellow", blurX: 80, blurY: 80 })
+      );
       toggleLight(true);
-      
     } else {
       switchButton.gradient = 0.01;
       switchButton.alpha = 0.01;
-      glowCircle.effect(new GlowEffect({ color: "yellow", blurX: 0, blurY: 0 }));
+      glowCircle.effect(
+        new GlowEffect({ color: "yellow", blurX: 0, blurY: 0 })
+      );
       toggleLight(false);
     }
   });
@@ -85,79 +90,80 @@ function ready() {
   switchButton.center();
   switchButton.pos(456, 614);
 
-    //metal selectors 
-   
-  
-    const copperLabel = new Label({
-      text:"তামা",
-      size:20,
-      bold:true,
-      color:white,
-      vertical:true
-   });
-   const copperButt = new Button({
-    label: copperLabel,  // Label for the button
-    width: 80,            // Width of the button
-    height: 200,          // Height of the button
-    backgroundColor: "transparent",  // Background color (transparent in this case)
-    background: new Pic("assets/copperTexture.png").center().sca(1).pos(540, 350),  // Copper texture as the background
-    rollBackgroundColor: "transparent",  // Background color on roll-over (transparent in this case)
-    rollColor: "black",   // Color on roll-over
-    borderWidth: 8,       // Border width
-    borderColor: "white", // Border color
-    gradient: 0.3,        // Gradient
-    corner: 0,            // Corner radius
-  }).center().pos(540, 350);  // Center and position the button
-  
-  
-   const siliconLabel = new Label({
-    text:"সিলিকন",
-    size:18,
-    flip:270,
-    bold:true
+  //metal selectors
+
+  const copperLabel = new Label({
+    text: "তামা",
+    size: 20,
+    bold: true,
+    color: white,
+    vertical: true,
+  });
+  const copperButt = new Button({
+    label: copperLabel,
+    width: 80,
+    height: 200,
+    backgroundColor: "transparent",
+    rollBackgroundColor: "transparent",
+    rollColor: "black",
+    borderWidth: 8,
+    borderColor: "white",
+    gradient: 0.3,
+    corner: 0,
+  })
+    .center()
+    .pos(540, 350)
+    .drag();
+
+  const siliconLabel = new Label({
+    text: "সিলিকন",
+    size: 18,
+    flip: 270,
+    bold: true,
   });
   const siliconButt = new Button({
-    label:siliconLabel,
-    width:80,
-    height:200,
-    background:new Pic("assets/siliconTexture.png").center().sca(1).pos(800,270),
-    backgroundColor:"transparent",
-    rollBackgroundColor:"transparent",
-    rollColor:gray,
-    borderWidth:8,
-    borderColor:"white",
-    gradient:.3,
-    corner:0
-  }).center().pos(800,270);
-  
-  
+    label: siliconLabel,
+    width: 80,
+    height: 200,
+    backgroundColor: "transparent",
+    rollBackgroundColor: "transparent",
+    rollColor: gray,
+    borderWidth: 8,
+    borderColor: "white",
+    gradient: 0.3,
+    corner: 0,
+  })
+    .center()
+    .pos(800, 270)
+    .drag();
+
   const woodLabel = new Label({
-    text:"কাঠ",
-    size:20,
-    bold:true,
-    color:white
+    text: "কাঠ",
+    size: 20,
+    bold: true,
+    color: white,
   });
   const woodButt = new Button({
-    label:woodLabel,
-    width:80,
-    height:200,
-    background:new Pic("assets/woodTexture.png").center().sca(1).pos(900,270),
-    backgroundColor:"transparent",
-    rollBackgroundColor:"transparent",
-    rollColor:black,
-    borderWidth:8,
-    borderColor:"white",
-    gradient:.3,
-    corner:0
-  }).center().pos(900,270);
-
+    label: woodLabel,
+    width: 80,
+    height: 200,
+    backgroundColor: "transparent",
+    rollBackgroundColor: "transparent",
+    rollColor: black,
+    borderWidth: 8,
+    borderColor: "white",
+    gradient: 0.3,
+    corner: 0,
+  })
+    .center()
+    .pos(900, 270)
+    .drag();
 
   // Event listener for the button click
   function toggleLight(state) {
     lightOn = state;
     lightState = lightOn ? 1 : 0;
     if (lightOn) {
-     
       light.color = "yellow";
       light.effect(new GlowEffect({ color: "yellow", blurX: 70, blurY: 70 }));
       // electron.animate({
@@ -179,33 +185,42 @@ function ready() {
       // });s
     }
   }
+
+  copperButt.on("pressmove", function () {
+    if (toggle) {
+      if (copperButt.hitTestRect(dropSquare)) {
+        light.color = "yellow";
+        light.effect(new GlowEffect({ color: "yellow", blurX: 70, blurY: 70 }));
+      } else {
+        light.color = "transparent";
+        light.noEffect();
+        copperButt.center().pos();
+      }
+    }
+  });
   
- 
-  copperButt.on("click", function () {
+  siliconButt.on("pressmove", function () {
     if (toggle) {
-      light.color = "yellow";
-      light.effect(new GlowEffect({ color: "yellow", blurX: 70, blurY: 70 }));
-      const copperTexture = new Pic("assets/copperTexture.png").center().sca(1).pos(540,350);
+      if (siliconButt.hitTestRect(dropSquare)) {
+        light.color = "yellow";
+        light.effect(new GlowEffect({ color: "yellow", blurX: 40, blurY: 40 }));
+      } else {
+        light.color = "transparent";
+        light.noEffect();
+      }
     }
   });
-
-  siliconButt.on("click", function () {
-    if (toggle) {
-      light.color = "yellow";
-      light.effect(new GlowEffect({ color: "lime", blurX: 40, blurY: 40 }));
-      const copperTexture = new Pic("assets/siliconTexture.png").center().sca(1).pos(540,350);
-    }
-  });
-
-  woodButt.on("click", function () {
-    if (toggle) {
-      light.color = "transparent";
-      light.effect(new GlowEffect({ color: "cyan", blurX: 0, blurY: 0 }));
-      const copperTexture = new Pic("assets/woodTexture.png").center().sca(1).pos(540,350);
-    }
-  });
-
-
   
-
+  woodButt.on("pressmove", function () {
+    if (toggle) {
+      if (woodButt.hitTestRect(dropSquare)) {
+        light.color = "transparent";
+        light.effect(new GlowEffect({ color: "cyan", blurX: 0, blurY: 0 }));
+      } else {
+        light.color = "transparent";
+        light.noEffect();
+      }
+    }
+  });
+  
 }
