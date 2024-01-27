@@ -28,12 +28,17 @@ function ready() {
     borderColor: "transparent",
     borderWidth: 3,
     showControls: false,
-    points: new Rectangle(500, 400, "#B87333", 4),
+    points: [
+      [150, 275, 0, 0, 0, 0, 0, 0, "none"],
+      [405, 275, 0, 0, 0, 0, 0, 0, "none"],
+      [405, -100, 0, 0, 0, 0, 0, 0, "none"],
+      [-100, -100, 0, 0, 0, 0, 0, 0, "none"],
+      [-100, 275, 0, 0, 0, 0, 0, 0, "none"],
+      [150, 275, 0, 0, 0, 0, 0, 0, "none"],
+    ],
   })
     .center()
-    .pos(80, 265);
-
-  // electron = new Circle(10, "red").pos(445, 655);
+    .pos(75, 268);
 
   const light = new Circle(45, "transparent").center().pos(277, 120); // Increased light size
   const glowCircle = new Circle(30, "yellow").center().pos(455, 615);
@@ -47,9 +52,11 @@ function ready() {
     bold: true,
     color: "white",
   });
-
+  electron = new Circle(10, "cyan").pos(315, 632);
   const cirImage = new Pic("assets/cir.png").center().sca(1.6).pos(70, 120);
-  const dropSquare = new Rectangle(80, 200).center().pos(540, 350);
+  const dropSquare = new Rectangle(80, 200, "transparent")
+    .center()
+    .pos(540, 350);
   // Switch
   const switchButton = new Button({
     label: label,
@@ -166,61 +173,70 @@ function ready() {
     if (lightOn) {
       light.color = "yellow";
       light.effect(new GlowEffect({ color: "yellow", blurX: 70, blurY: 70 }));
-      // electron.animate({
-      //   props: { path },
-      //   ease: "linear",
-      //   time: 1,
-      //   loop: true,
-      //   startPercent: 50,
-      // });
+
+      electron.animate({
+        props: { path },
+        ease: "linear",
+        time: 5,
+        loop: true,
+      });
     } else {
       light.color = "transparent";
       light.noEffect();
-      // electron.animate({
-      //   props: { path },
-      //   ease: "linear",
-      //   time: 1,
-      //   loop: false,
-      //   startPercent: 50,
-      // });s
+      electron.pauseAnimate();
     }
   }
+
+  // function electrons(size,speed,numbers)
+  // {
+  //   for(var i=1;i<=numbers;i++)
+  //   {
+  //     new 
+  //   }
+  // }
 
   copperButt.on("pressmove", function () {
     if (toggle) {
       if (copperButt.hitTestRect(dropSquare)) {
         light.color = "yellow";
         light.effect(new GlowEffect({ color: "yellow", blurX: 70, blurY: 70 }));
+        siliconButt.center().pos(800, 270);
+        woodButt.center().pos(900, 270);
+        copperButt.center().pos(540, 350);
       } else {
         light.color = "transparent";
         light.noEffect();
-        copperButt.center().pos();
       }
     }
   });
-  
+
   siliconButt.on("pressmove", function () {
     if (toggle) {
       if (siliconButt.hitTestRect(dropSquare)) {
         light.color = "yellow";
         light.effect(new GlowEffect({ color: "yellow", blurX: 40, blurY: 40 }));
+        copperButt.center().pos(800, 270);
+        woodButt.center().pos(900, 270);
+        siliconButt.center().pos(540, 350);
       } else {
         light.color = "transparent";
         light.noEffect();
       }
     }
   });
-  
+
   woodButt.on("pressmove", function () {
     if (toggle) {
       if (woodButt.hitTestRect(dropSquare)) {
         light.color = "transparent";
         light.effect(new GlowEffect({ color: "cyan", blurX: 0, blurY: 0 }));
+        copperButt.center().pos(900, 270);
+        siliconButt.center().pos(800, 270);
+        woodButt.center().pos(540, 350);
       } else {
         light.color = "transparent";
         light.noEffect();
       }
     }
   });
-  
 }
