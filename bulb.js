@@ -12,7 +12,7 @@ function ready() {
 
   const path = new Blob({
     color: "transparent",
-    borderColor: "red",
+    borderColor: "transparent",
     borderWidth: 3,
     showControls: false,
     points: [
@@ -27,7 +27,7 @@ function ready() {
 
   const path1 = new Blob({
     color: "transparent",
-    borderColor: "red",
+    borderColor: "transparent",
     borderWidth: 3,
     showControls: false,
     points: [
@@ -42,7 +42,7 @@ function ready() {
 
   const path2 = new Blob({
     color: "transparent",
-    borderColor: "red",
+    borderColor: "transparent",
     borderWidth: 3,
     showControls: false,
     points: [
@@ -57,7 +57,7 @@ function ready() {
 
   const path3 = new Blob({
     color: "transparent",
-    borderColor: "red",
+    borderColor: "transparent",
     borderWidth: 3,
     showControls: false,
     points: [
@@ -72,7 +72,7 @@ function ready() {
 
   const path4 = new Blob({
     color: "transparent",
-    borderColor: "red",
+    borderColor: "transparent",
     borderWidth: 3,
     showControls: false,
     points: [
@@ -87,7 +87,7 @@ function ready() {
 
   const path5 = new Blob({
     color: "transparent",
-    borderColor: "red",
+    borderColor: "transparent",
     borderWidth: 3,
     showControls: false,
     points: [
